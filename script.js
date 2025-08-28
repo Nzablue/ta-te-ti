@@ -25,12 +25,7 @@ class TicTacToe {
         this.scoreX = document.getElementById("score-x");
         this.scoreO = document.getElementById("score-o");
 
-        const titulo = document.getElementById("game-title");
-        titulo.textContent = "tateti";
-        titulo.addEventListener("click", () => {
-            titulo.style.color = "red";
-        })
-
+        
 
         this.addEventListeners();
         this.updateDisplay();
@@ -101,8 +96,9 @@ class TicTacToe {
 
         if (gameResult == "win") {
             this.scores[this.currentPlayer]++;
+            this.gameStatus.textContent = `Player ${this.currentPlayer} wins!`;
         } else {
-
+            this.gameStatus.textContent = "Draw!";
         }
 
         this.updateDisplayScores();
@@ -119,11 +115,32 @@ class TicTacToe {
     }
 
     resetGame() {
+       this.board = array(9).fill("");
+       this.currentPlayer = "X";
+       this.gameActive = true;
+       this.gameStatus.textContent = "";
 
+        // for(cell of this.cells){ //Programacion Imperativa
+        //     cell.textContent = "";
+        //     cell.classList.remove("x", "o", "winning");
+        // }
+
+       this.cells.forEach(cell => { //Programación Funcional
+        cell.textContent = "";
+        cell.classList.remove("x", "o", "winning");
+       })
+
+       this.gameStatus.textContent = "";
+       this.updateDisplay();
     }
 
     newGame() {
-
+        this.resetGame();
+        this.scores = {
+            X: 0,
+            O: 0
+        }
+        this.updateDisplayScores();
     }
 }
 
