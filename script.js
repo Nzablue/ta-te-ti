@@ -2,11 +2,11 @@ class TicTacToe {
     constructor() {
         this.board = Array(9).fill("");
         this.currentPlayer = "X";
+        this.gameActive = true;
         this.scores = {
             X: 0,
             O: 0
         }
-        this.gameActive = true;
 
         this.winningConditions = [
             [0, 1, 2], [3, 4, 5], [6, 7, 8], //Filas
@@ -24,8 +24,14 @@ class TicTacToe {
         this.newGameBtn = document.getElementById("new-game-btn");
         this.scoreX = document.getElementById("score-x");
         this.scoreO = document.getElementById("score-o");
+        this.gameStatus = document.getElementById("game-status");
 
-        
+        // const titulo = document.getElementById("game-title");
+        // titulo.textContent = "tateti";
+        // titulo.addEventListener("click", () => {
+        //     titulo.style.color = "red";
+        // })
+
 
         this.addEventListeners();
         this.updateDisplay();
@@ -115,23 +121,22 @@ class TicTacToe {
     }
 
     resetGame() {
-       this.board = array(9).fill("");
-       this.currentPlayer = "X";
-       this.gameActive = true;
-       this.gameStatus.textContent = "";
+        this.board = Array(9).fill("");
+        this.currentPlayer = "X";
+        this.gameActive = true;
 
         // for(cell of this.cells){ //Programacion Imperativa
         //     cell.textContent = "";
         //     cell.classList.remove("x", "o", "winning");
         // }
 
-       this.cells.forEach(cell => { //Programación Funcional
-        cell.textContent = "";
-        cell.classList.remove("x", "o", "winning");
-       })
+        this.cells.forEach(cell => { //Programacion Funcional
+            cell.textContent = "";
+            cell.classList.remove("x", "o", "winning");
+        })
 
-       this.gameStatus.textContent = "";
-       this.updateDisplay();
+        this.gameStatus.textContent = "";
+        this.updateDisplay();
     }
 
     newGame() {
